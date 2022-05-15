@@ -5,17 +5,29 @@ import com.kslang.demo.modules.word.service.WordRepository;
 import com.kslang.demo.modules.word.service.WordService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
-@RequiredArgsConstructor
+@Service
 public class WordServiceImpl implements WordService {
+    @Autowired
+    WordRepository wordRepository;
 
-    private final WordRepository wordRepository;
-
+    @Override
     public Flux<Word> searchWord(String title){
         Flux<Word> word = (Flux<Word>) wordRepository.findByTitle(title);
         return word;
+    }
+
+    @Override
+    public Mono<Word> saveWord(Word word){
+        return wordRepository.saveWord(word);
+    }
+
+    @Override
+    public Mono<String> deleteById(String id){
+        wordRepository.deleteWordById(id);
+        return Mono.just("Word :" +id+" 제거되었습니다!");
     }
 }
