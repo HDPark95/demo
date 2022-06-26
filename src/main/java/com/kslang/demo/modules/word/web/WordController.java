@@ -1,33 +1,22 @@
 package com.kslang.demo.modules.word.web;
 
-import com.kslang.demo.domain.Word;
-import com.kslang.demo.modules.word.service.WordService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
-import reactor.core.publisher.Flux;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import reactor.core.publisher.Mono;
 
-
-@RequiredArgsConstructor
-@RestController
+@Controller
 public class WordController {
-
-    private final WordService wordService;
-
-    @GetMapping
-    Flux<String> main(){
-        return Flux.just("Hello", "World");
+    @GetMapping("/")
+    public Mono<String> main(){
+        return Mono.just("main");
     }
-
-    @PostMapping("/word/save")
-    public Mono<Word> saveWord(Word word){
-        return wordService.saveWord(word);
+    @GetMapping("/layout")
+    public Mono<String> layout(){
+        return Mono.just("/layouts/layout");
     }
-
-    @DeleteMapping("/word/delete/{id}")
-    public Mono<String> deleteById(@PathVariable  String id){
-        return wordService.deleteById(id);
+    @GetMapping("/page/word/form")
+    public Mono<String> goWordForm(){
+        return Mono.just("/word/form");
     }
-
 
 }

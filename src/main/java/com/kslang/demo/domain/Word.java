@@ -11,5 +11,11 @@ public class Word {
     private String id;
 
     private String title;
+
     private boolean reportCd;
+
+    public Word(String title, boolean reportCd) {
+        this.title = title;
+        this.reportCd = reportCd;
+    }
 }

@@ -10,7 +10,8 @@ public interface WordService {
 
     Mono<Word> saveWord(Word word);
 
-    Mono<String> deleteById(String id);
+    Mono<Word> saveWord(String title);
 
+    Mono<String> deleteById(String id);
 
 }

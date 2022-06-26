@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<!-- 공통 헤드-->
+<th:block th:replace="/layouts/fragments/header :: headFragment"></th:block>
+<body id="page-top" class="dashboard dashboard_1">
+<div class="full_container">
+    <div class="inner_container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/">KSLANG</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/page/login"><span class="sr-only">로그인</span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- right content -->
+        <div id="content">
+            <div class="midde_cont">
+                <div class="container-fluid">
+                    <th:block layout:fragment="content">
+                        <!-- Begin Page Content -->
+                        <div class="container-fluid">
+                            <form action="" method="GET">
+                                <div class="input-group">
+                                    <input name="searchValue" id="searchValue" type="text" class="input" placeholder="검색어를 입력하세요." autocomplete="off">
+                                    <input type="button" id="searchBtn" value="검색" class="button">
+                                </div>
+                            </form>
+                            <button type="button" class="btn btn-sm" onclick="location.href='/page/word/form'">단어 등록하기</button>
+                        </div>
+                    </th:block>
+                </div>
+            </div>
+            <!-- 공통 하단-->
+            <th:block th:replace="/layouts/fragments/footer :: footerFragment"></th:block>
+        </div>
+        <!-- end dashboard inner -->
+    </div>
+</div>
+</div>
+<!-- 공통 스크립트-->
+<th:block th:replace="/layouts/fragments/script :: scriptFragment"></th:block>
+</body>
+<script>
+    let main = (function(){
+
+    })();
+    $(document).ready(function(){
+        $("#searchBtn").click(function(){
+            $.ajax({
+                url:"/api/word/search?title="+$("#searchValue").val(),
+                method:"GET",
+                success:function(result){
+                    console.log(result);
+                }
+            })
+        })
+    })
+</script>
+</html>
+
+
+</html>

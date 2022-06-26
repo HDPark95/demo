@@ -2,15 +2,19 @@ package com.kslang.demo.modules.word.service;
 
 import com.kslang.demo.domain.Word;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.List;
+@Repository
+public interface WordRepository extends ReactiveMongoRepository<Word, String> {
+    Flux<Word> findByTitle(String title);
 
-
-public interface WordRepository extends MongoRepository<Word, String> {
-    List<Word> findByTitle(String title);
-    
-    Mono<Word> saveWord(Word word);
+    Mono<Word> save(Word word);
 
     Mono<Void> deleteWordById(String id);
+
+    Mono<Word> findById(String id);
 }

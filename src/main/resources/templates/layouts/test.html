@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<style>
+    .input-text{
+        font-size: 1rem;
+        font-weight: 400;
+        text-align: center;
+        padding: 7px;
+        background-color:lightblue;
+        position:relative;
+        top: 3px;
+        left:6px;
+    }
+    .input-group{
+        position:relative;
+        width:350px;
+        margin: auto;
+        line-height:200px;
+    }
+    .input{
+        width:200px;
+        height:30px;
+        border: 2px solid lightblue;
+    }
+    .button{
+        height:36px;
+        background-color:lightblue;
+        position:relative;
+        left:-7px;
+        top:1.5px;
+    }
+</style>
+<th:block layout:fragment="content">
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <form action="https://search.naver.com/search.naver" method="GET">
+            <div class="input-group">
+                <span class="input-text">KSLANG</span>
+                <input name="query" type="text" class="input" placeholder="검색어를 입력하세요." >
+                <input type="button" value="검색" class="button">
+            </div>
+        </form>
+    </div>
+</th:block>
+</html>
